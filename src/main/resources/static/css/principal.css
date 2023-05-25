@@ -1,0 +1,46 @@
+   .main-page
+{
+	background-repeat: no-repeat;
+    background-size:100%;
+    background-size: cover;
+    background-attachment: fixed;
+    bottom: 0;
+    color: black;
+    left: 0;
+    overflow: auto;
+    position: absolute;
+    right: 0;
+    text-align: center;
+    top: 0;
+    text-align: center;
+}
+
+.box {
+    position: fixed;
+    right: 1rem;
+    bottom: 1rem;
+}
+
+ .boximg {
+        width: 100%;
+        max-width: 185px;
+        height: 185px;
+        margin: 0 auto;
+        background-color: white;
+        
+        display: flex;
+   		align-items:center;
+      }
+      
+.imgx {
+        display: block;
+        margin: 0 auto;
+        max-width: 100%;
+      }
+      
+.encurtatexto {
+		max-width: 100%;
+		text-overflow: ellipsis;
+  		 overflow: hidden;
+  		 white-space: nowrap;
+}

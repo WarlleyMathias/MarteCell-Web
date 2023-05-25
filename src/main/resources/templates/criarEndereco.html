@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+
+<html lang="pt-br" xmlns:th="http://thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security5" 
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout.html}">
+  
+<head>
+	<meta charset="utf-8">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	<link href="../static/css/addproduto.css" th:href="@{/css/addproduto.css}" rel="stylesheet" />
+	<script src="js/endereco.js" type="text/javascript"></script>
+	<script src="/js/cep.js" type="text/javascript"></script>
+</head>
+
+	<main layout:fragment="custom-main">
+
+		<div class="py-5" style="background:#f2f2f2">
+
+		    <div class="container rounded" style="background:#ffffff">
+	  			
+	  			<div class="p-3">
+	  				<form method="post" action="criarEndereco">
+	  					
+	  					<div class="mb-3">
+	  					<h1>Criar Endereço</h1>
+	  					</div>
+						<div class="mb-3">
+						  
+							<label for="cep" class="form-label">Cep:</label>
+						    <input type="text" style="text-transform: capitalize;" class="form-control" id="cep" name="cep" value="" size="10" maxlength="9" pattern= "\d{5}-?\d{3}" required>
+						    						    
+						</div>
+						<div class="mb-3">
+						  
+							<label for="estado" class="form-label">Estado:</label>
+						    <input type="text" style="text-transform: capitalize;" class="form-control" id="estado" name="estado" size="2" required>
+						    
+						</div>
+						<div class="mb-3">
+						  
+							<label for="cidade" class="form-label">Cidade:</label>
+						    <input type="text" style="text-transform: capitalize;" class="form-control" id="cidade" name="cidade" size="40" required>
+						    
+						</div>
+						<div class="mb-3">
+						  
+							<label for="bairro" class="form-label">Bairro:</label>
+						    <input type="text" style="text-transform: capitalize;" class="form-control" id="bairro" name="bairro" size="40" required>
+						    
+						</div>
+						<div class="mb-3">
+						  
+							<label for="ruaAvenida" class="form-label">Rua/Avenida:</label>
+						    <input type="text" style="text-transform: capitalize;" class="form-control" id="ruaAvenida" name="ruaAvenida" size="60" required>
+						    
+						</div>
+						<div class="mb-3">
+						  
+							<label for="Numero" class="form-label">Numero:</label>
+						    <input type="text" style="text-transform: capitalize;" class="form-control" id="Numero" name="Numero" maxlength="4" onKeyPress="return SoNumber(event)" pattern="[0-9]+$" required>
+						    
+						</div>
+						<div class="mb-3">
+						  
+							<label for="Telefone" class="form-label">Telefone:</label>
+						    <input type="tel" style="text-transform: capitalize;" class="form-control" id="Telefone" name="Telefone" maxlength="16" onKeyPress="return SomenteNumero(event, this, 'TELEFONE');" pattern="\([0-9]{2}\) [0-9]{1} [0-9]{4}-[0-9]{4}$" required>
+						    
+						</div>
+						<div class="mb-3">
+						  
+							<label for="complemento" class="form-label">Complemento:</label>
+						    <input type="text" style="text-transform: capitalize;" class="form-control" id="complemento" name="complemento" size="60" required>
+						    
+						</div>
+						<div class="mb-3">
+						  
+						    <input type="hidden" style="text-transform: capitalize;" class="form-control" id="continente" name="continente" value="BRA">
+						    
+						</div>
+						<div class="mb-3">
+						
+						<button class="btn btn-primary" type="submit">Salvar</button>
+						
+						</div>
+				  						  
+				</form>
+				<form action="/perfil" method="post">
+					<button class="btn btn-secondary" type="submit">Cancelar</button>
+				</form>
+	  			</div>
+	  			
+				
+	  		</div>
+	  	</div>
+	</main>
+
+</html>

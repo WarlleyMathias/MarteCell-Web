@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+
+<html lang="pt-br" xmlns:th="http://thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security5" 
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout.html}">
+  
+<head>
+	<meta charset="utf-8">
+</head>
+
+	<main layout:fragment="custom-main" style="background:#e6e6e6">
+	
+		<div class="container py-5">
+		
+			<div class="bg-light p-3 rounded">
+			
+				<div class="mb-3">
+	  				<h1>Meus Dados</h1>
+	  			</div>
+			
+				<div class="mb-3">
+					<label for="nome">Nome: </label>
+					<p id="nome" th:text="${user.getName}"></p>
+				</div>
+				
+				<div class="mb-3">
+					<label for="email">Email: </label>
+					<p id="email" th:text="${user.getEmail}"></p>
+				</div>
+				
+				<div class="mb-3">
+					<label for="endereco">Endereço: </label><br>
+					<label id="Cep" th:text="${endereco.getCep}"></label>
+					<label id="RuaAvenida" th:text="${endereco.getRuaAvenida}"></label>
+					<label id="Numero" th:text="${endereco.getNumero}"></label><br>
+					<label id="Cidade" th:text="${endereco.getCidade}"></label>
+					<label id="Estado" th:text="${endereco.getEstado}"></label>
+				</div>
+				<form action="/editarEndereco" method="get">
+					<button class="btn btn-primary" type="submit" th:text="${endereco.getCep} ? 'Editar Endereço' : 'Criar Endereço'"></button>
+				</form>
+			</div>
+			
+		</div>
+		
+	</main>
+
+</html>

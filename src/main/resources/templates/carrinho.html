@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+
+<html lang="pt-br" xmlns:th="http://thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security5" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{layout.html}">
+  
+<head>
+	<meta charset="utf-8">
+	<script type="text/javascript" src="https://stc.sandbox.pagseguro.uol.com.br/pagseguro/api/v2/checkout/pagseguro.lightbox.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
+
+	<main layout:fragment="custom-main" style="background:#e6e6e6">
+	
+		<div class="container py-5">
+		
+			<div class="container p-2 bg-light rounded">
+						<div class="p-2 border-bottom" >
+							<table class="table align-middle">
+							 <tbody>
+			
+
+			
+
+
+ 
+    <tr th:each="produto : ${produtos}">
+      <th scope="row">
+		<div class="modal-body align-self-center">
+			<img th:src="${produto.ImagePath}" style="max-width:100px; max-height:100px;" class="d-block w-100" alt="...">
+		</div>
+      </th>
+      <td >
+					<span th:text="${produto.getNome}"></span>
+					 
+</td>
+      <td>
+			 		<span th:text="'R$' + ${produto.getValorReal}"></span>
+</td>
+      <td><div class="modal-body align-self-center" th:each="itemCarrinho : ${carrinho}"  th:if="${itemCarrinho.getIdProduto == produto.getId}">
+			 		<label>Quantidade:	</label>
+			 		<input type="number" min="1" max="10" th:value="${itemCarrinho.getQuantidade}">
+			 	</div></td>
+      <td><div class="modal-body align-self-center" th:each="itemCarrinho : ${carrinho}"  th:if="${itemCarrinho.getIdProduto == produto.getId}">
+			 	<form id="deleteitem" action="/dropcarrinho" method="post">
+			 		<input type="hidden" th:value="${itemCarrinho.getIdUsuario}" name="IdUsuario">
+			 		<input type="hidden" th:value="${itemCarrinho.getIdProduto}" name="IdProduto">
+			 		<a href="#" onclick="myFunction()">Excluir</a>
+				 		<script>
+				            function myFunction() {
+				                document.getElementById("deleteitem").submit();
+				            }
+				        </script>
+			 		</form>
+			 	</div></td>
+    </tr>
+
+			  </tbody>
+			</table>
+			
+						</div>
+			<div class="d-flex justify-content-end p-2">
+			<form action="/finalizarcompra" method="get">
+			 <button class="btn btn-primary" style = "font-family:Lucida Bright">Finalizar Compra</button>
+			</form>
+			</div>
+			
+	
+
+<div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel" th:text="${menssagem}"></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+      </div>
+    </div>
+  </div>
+</div>
+			  <script th:if="${menssagem} != null">
+			  	$(document).ready(function(){
+					$('#myModal').modal('show');
+				});
+			  </script>
+			  
+			</div>
+		
+		</div>
+		
+		<input id="cod" type="hidden" th:value="${codigo}">
+	  
+	  
+	  <script src="js/pagseguro.js" type="text/javascript" th:if="${codigo != null}"></script>
+	</main>
+
+</html>

@@ -1,0 +1,10 @@
+.boximgproduto {
+ 		height: 270px;
+        width: 100%;
+        max-width: 270px;
+        margin: 0 auto;
+        background-color: white;
+        
+        display: flex;
+   		align-items:center;
+      }

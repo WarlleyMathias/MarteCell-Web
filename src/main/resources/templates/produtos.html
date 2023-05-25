@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+
+<html lang="pt-br" xmlns:th="http://thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security5" 
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout.html}">
+  
+<head>
+	<meta charset="utf-8">
+	<link href="../static/css/produtos.css" th:href="@{/css/produtos.css}" rel="stylesheet" />
+</head>
+
+	<main layout:fragment="custom-main">
+
+		<nav class="bd-subnavbar py-2" aria-label="Secondary navigation">
+			<div class="container-xxl d-flex align-items-md-center">
+			    <div class="dropdown">
+				  	<button class="btn btn-bd-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+				    Categoria
+				  	</button>
+				  	<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+				    	<li><a class="dropdown-item" href="/produtos/Todos/1">Todos</a></li>
+				    	<li th:each="categ : ${categorias}"><a class="dropdown-item" th:href="'/produtos/' + ${categ.getNome} + '/1'" th:text="${categ.getNome}"></a></li>
+				  	</ul>
+				</div>
+				<div>
+				<form class="d-flex" action="/addcategoria" method="post" sec:authorize="hasRole('ROLE_ADMIN')">
+			      <input class="form-control me-2" style="text-transform: capitalize;" type="text" placeholder="Adicionar Categoria" name="nome" required>
+			      <button class="btn btn" style="background-color:#ff6600; color:white" type="submit">Adicionar</button>
+			    </form>
+				</div>
+				<div class="ms-auto">
+				  	 <a class="btn btn" style="background-color:#ff6600; color:white" href="/addproduto" sec:authorize="hasRole('ROLE_ADMIN')">Adicionar Produto</a>
+				  	</div>
+			</div>
+		</nav>
+	
+	
+		<div class="album py-5" style="background:#f2f2f2">
+
+		    <div class="container">
+		    
+		    	<nav aria-label="breadcrumb">
+				  <ol class="breadcrumb">
+				    <li class="breadcrumb-item"><a href="/produtos/Todos/1">Produtos</a></li>
+				    <li class="breadcrumb-item"><a th:href="'/produtos/' + ${categoriaAtual} + '/1'" th:text="${categoriaAtual}"></a></li>
+				  </ol>
+				</nav>
+		
+				<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+				
+				  <div class="col" th:each="produto, indice : ${produtos}" th:if="${indice.index < 18 * pagina && indice.index >= 18 * (pagina - 1)}">
+				  
+				    <div class="card shadow-sm">
+				    		
+				    	<div class="boximgproduto container">
+				    		 <img class="bd-placeholder-img card-img-top imgx" th:src="${produto.ImagePath}" alt="...">
+				    	</div>
+				    	
+				     
+				      <div class="card-body">
+				        <p class="card-text" th:text="${produto.getNome}"></p>
+				        <p th:text="'R$' + ${produto.getValorReal}"></p>
+				      </div>
+				      <a th:href="'/produto/' + ${produto.getId}" class="stretched-link"></a>
+				    </div>
+				    
+				  </div>
+				  
+				</div>
+				
+			      <div class="d-flex justify-content-center p-2">
+			      	<ul class="nav nav-pills" style="list-style: none;">
+			      	<li class="nav-item p-1">
+			      	<a class="nav-link" style="background-color:#ff6600; color:white" th:href="'/produtos/' + ${categoriaAtual} + '/' + ${pagina - 1}" th:if="${pagina > 1}"><</a>
+			      	</li>
+			      	<li class="nav-item p-1" th:each="pag, indice : ${paginas}">
+			      	<a class="nav-link" style="background-color:#ff6600; color:white" th:classappend="${indice.index +1 == pagina} ? 'active': ''" th:href="'/produtos/' + ${categoriaAtual} + '/' + ${indice.index + 1}" th:text="${indice.index + 1}" th:if="${indice.index + 1 >= pagina && indice.index + 1 < pagina + 4}">></a>
+			      	</li>
+			      	<li class="nav-item p-1">
+			      	<a class="nav-link" style="background-color:#ff6600; color:white" th:href="'/produtos/' + ${categoriaAtual} + '/' + ${pagina + 1}" th:if="${paginas.size() >= pagina +1}">></a>
+			      	</li>
+			      	</ul>
+			      </div>
+		    </div>
+		  </div>
+	  
+	  <a href="https://wa.me/5522999896873?text=Adorei%20seu%20artigo" style="position:fixed;width:60px;height:60px;bottom:40px;right:40px;background-color:#25d366;color:#FFF;border-radius:50px;text-align:center;font-size:30px;box-shadow: 1px 1px 2px #888;
+  z-index:1000;" target="_blank">
+<i style="margin-top:16px" class="fa fa-whatsapp"></i>
+</a>
+	  
+	</main>
+
+</html>

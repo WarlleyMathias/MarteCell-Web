@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+
+<html lang="pt-br" xmlns:th="http://thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security5" 
+xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout.html}">
+  
+<head>
+	<meta charset="utf-8">
+	<link href="../static/css/addproduto.css" th:href="@{/css/addproduto.css}" rel="stylesheet" />
+</head>
+
+	<main layout:fragment="custom-main">
+
+		<div class="py-5" style="background:#f2f2f2">
+
+		    <div class="container rounded" style="background:#ffffff">
+	  			
+	  			<div class="p-3">
+	  				<form method="post" enctype="multipart/form-data">
+	  					
+	  					<div class="mb-3">
+	  					<h1>Adicionar Produto</h1>
+	  					</div>
+				  <div class="mb-3">
+				  
+				    <label for="Nome" class="form-label">Nome</label>
+				    <input type="text" style="text-transform: capitalize;" class="form-control" id="Nome" aria-describedby="nomeHelp" name="Nome" required>
+				    <div id="nomeHelp" class="form-text">Identificação do Produto.</div>
+				    
+				  </div>
+				  <div class="mb-3">
+				  
+				    <label for="Valor" class="form-label">Valor</label>
+				    <input type="number" class="form-control" pattern="[0-9]+([,\.][0-9]+)?" step=".01" id="Valor" name="Valor" required>
+				  </div>
+				  
+				  <div class="mb-3">
+				  
+				    <label for="Descricao" class="form-label">Descrição</label>
+				    <input type="text" style="text-transform: capitalize;" class="form-control" id="Descricao" name="Descricao" maxlength="100" required>
+				    
+				  </div>
+				  <div class="mb-3">
+				  
+				  	<label for="Imagem" class="form-label">Adicionar imagem</label>
+				  	<input type="file" class="form-control" accept="image/*" id="Imagem" name="Imagem" required>
+				  	
+				  </div>
+				  <div class="mb-3">
+				  
+				    <label for="Quantidade" class="form-label">Quantidade</label>
+				    <input type="number" class="form-control" id="Quantidade" name="Quantidade" required>
+				    
+				  </div>
+				  <div class="mb-3">
+				  
+				    <label for="Categoria" class="form-label">Categoria</label>
+				    <select class="form-control" id="Categoria" name="Categoria">
+				    	<option th:each="categoria : ${categorias}" th:text="${categoria.getNome}"></option>
+				    </select>
+				    
+				  </div>
+				  
+				  <button type="submit" class="btn btn-primary">Cadastrar Produto</button>
+				  
+				</form>
+	  			</div>
+	  			
+				
+	  		</div>
+	  	</div>
+	</main>
+
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+
+<html lang="pt-br" xmlns:th="http://thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security5" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{layout.html}">
+  
+<head>
+	<meta charset="utf-8">
+</head>
+
+<main layout:fragment="custom-main" class="text-center">
+<div class="py-5" style="background:#f2f2f2">
+	<div class="mx-auto" style="width: 300px;">
+		<div class="mb-3 bg-light p-3 rounded-3" >
+  <form action="login" method='POST'>
+    <img class="mb-4" src="imagens/MC.png" alt="" width="100" height="100">
+    <h1 class="h3 mb-3 fw-normal"></h1>
+    
+    <div class="mb-3">
+    <a href="/oauth2/authorization/google">Entre com Google</a>
+    </div>
+
+    <div class="form-floating mb-3">
+      <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" name="username">
+      <label for="floatingInput">Email</label>
+    </div>
+    <div class="form-floating mb-3">
+      <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="password">
+      <label for="floatingPassword">Password</label>
+    </div>
+    <div class="form-floating"><br>
+    <button class="w-100 btn btn-lg btn-primary" type="submit">Entre</button>
+    </div>
+  </form>
+       <div class="form-floating"><br>
+    <a href="/cadastrar"><button class="w-100 btn btn-lg btn-secondary">Cadastrar</button></a>
+    </div>
+  </div>
+  </div>
+  </div>
+</main>
+
+
+    
+  
+
+</body></html>
